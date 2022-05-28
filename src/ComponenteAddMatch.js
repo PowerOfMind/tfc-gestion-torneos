@@ -9,16 +9,22 @@ import "react-datepicker/dist/react-datepicker.css";
 const ComponenteAddMatch = (datos) => {
 
 
-    const [nuevoDia, setNuevoDia] = useState(new Date().toString())
+    const [nuevoDia, setNuevoDia] = useState(/*new Date().toString()*/"DD/MM/YYYY")
     const [nuevaHora, setNuevaHora] = useState("00:00")
     const [nuevoOrganizador, setNuevoOrganizador] = useState("")
+    const [nuevoPresupuesto, setNuevoPresupuesto] = useState(0)
+    const [nuevoTipo, setNuevoTipo] = useState("")
+    const [nuevoIntegrante, setNuevoIntegrante] = useState("")
+    const [nuevoPrivado, setNuevoPrivado] = useState("")
     const partidosCollectionRef = collection(db, "partidos");
     const crearPartido = async () => {
-         //const diaFormatted = moment(nuevoDia).format('DD-MM-YYYY');
-        // const horaFormatted = moment(nuevaHora).format('hh:mm');
-        // console.log('dia/hora', diaFormatted + horaFormatted);
-
-        await addDoc(partidosCollectionRef, { dia: nuevoDia, hora: nuevaHora, organizador: nuevoOrganizador })
+        console.log('crearPartido');
+        await addDoc(partidosCollectionRef, {
+            dia: nuevoDia,
+            hora: nuevaHora,
+            organizador: nuevoOrganizador,
+            presupuesto: nuevoPresupuesto,
+        })
     }
 
     const [tipo, setTipo] = useState([
@@ -60,7 +66,8 @@ const ComponenteAddMatch = (datos) => {
                     <input
                         type="date"
                         className="form-control"
-                        onChange={(event) => { setNuevoDia(moment(event.target.value).format('DD/MM/YYYY')) }}
+                        // onChange={(event) => { setNuevoDia(moment(event.target.value).format('DD/MM/YYYY')) }}
+                        onChange={(event) => { setNuevoDia(event.target.value) }}
                     ></input>
                 </div>
                 <div className="mb-3">
@@ -85,9 +92,7 @@ const ComponenteAddMatch = (datos) => {
                     <input
                         type="number"
                         className="form-control"
-                        onChange={handleInputs}
-                        name="presupuesto"
-                        value={partido.presupuesto}
+                        onChange={(event) => { setNuevoPresupuesto(event.target.value) }}
                     ></input>
                 </div>
 
@@ -148,7 +153,6 @@ const ComponenteAddMatch = (datos) => {
                 <button
                     className="btn btn-primary"
                     onClick={crearPartido}
-
                 >
                     Agregar partido
                 </button>
@@ -158,41 +162,3 @@ const ComponenteAddMatch = (datos) => {
 }
 
 export default ComponenteAddMatch;
-// onClick={(e) => {
-//     e.preventDefault();
-//     datos.setMatch((valor_anterior) => {
-//         return [...valor_anterior, partido];
-//     });
-
-//     setPartido({
-//         dia: "",
-//         hora: "",
-//         organizador: "",
-//         presupuesto: 0,
-//         tipo: "",
-//         equipo: [],
-//         privado: false,
-//     });
-// }}
-    /* <button
-    onClick={(e) => {
-        e.preventDefault();
-        setPartido({ ...partido, equipo: equipo });
-    }}
-    >
-    Validar equipo
-    </button> */
-/* <button
-onClick={(e) => {
-e.preventDefault();
-
-setPartido({
-...partido,
-equipo: partido.equipo.filter((data) => {
-  return data === "Borja";
-}),
-});
-}}
->
-Eliminar equipo
-</button> */
