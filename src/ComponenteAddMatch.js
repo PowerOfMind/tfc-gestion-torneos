@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { db } from './firebase-config'
 import { collection, getDocs, addDoc } from 'firebase/firestore'
+import moment from 'moment'
 
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const ComponenteAddMatch = (datos) => {
 
-    const partidosCollectionRef = collection(db, 'partidos');
-    const [nuevoDia, setNuevoDia] = useState("")
-    const [nuevaHora, setNuevaHora] = useState("")
+
+    const [nuevoDia, setNuevoDia] = useState(new Date().toString())
+    const [nuevaHora, setNuevaHora] = useState("00:00")
     const [nuevoOrganizador, setNuevoOrganizador] = useState("")
+    const partidosCollectionRef = collection(db, "partidos");
     const crearPartido = async () => {
+         //const diaFormatted = moment(nuevoDia).format('DD-MM-YYYY');
+        // const horaFormatted = moment(nuevaHora).format('hh:mm');
+        // console.log('dia/hora', diaFormatted + horaFormatted);
+
         await addDoc(partidosCollectionRef, { dia: nuevoDia, hora: nuevaHora, organizador: nuevoOrganizador })
     }
 
@@ -54,9 +60,7 @@ const ComponenteAddMatch = (datos) => {
                     <input
                         type="date"
                         className="form-control"
-                        onChange={(event) => { setNuevoDia(event.target.value) }}
-                        // name="dia"
-                        // value={partido.dia}
+                        onChange={(event) => { setNuevoDia(moment(event.target.value).format('DD/MM/YYYY')) }}
                     ></input>
                 </div>
                 <div className="mb-3">
@@ -65,8 +69,6 @@ const ComponenteAddMatch = (datos) => {
                         type="time"
                         className="form-control"
                         onChange={(event) => { setNuevaHora(event.target.value) }}
-                        // name="hora"
-                        // value={partido.hora}
                     ></input>
                 </div>
                 <div className="mb-3">
@@ -75,8 +77,6 @@ const ComponenteAddMatch = (datos) => {
                         type="text"
                         className="form-control"
                         onChange={(event) => { setNuevoOrganizador(event.target.value) }}
-                        // name="organizador"
-                        // value={partido.organizador}
                     ></input>
                 </div>
 
@@ -121,33 +121,12 @@ const ComponenteAddMatch = (datos) => {
                             e.preventDefault();
                             integrante.length > 0
                                 ? handleIntegrante()
-                                : alert("Por favor mete algo en el integrante");
+                                : alert("introduzca al menos un integrante");
                         }}
                     >
                         Agregar integrante
                     </button>
-                    {/* <button
-            onClick={(e) => {
-              e.preventDefault();
-              setPartido({ ...partido, equipo: equipo });
-            }}
-          >
-            Validar equipo
-          </button> */}
-                    {/* <button
-            onClick={(e) => {
-              e.preventDefault();
 
-              setPartido({
-                ...partido,
-                equipo: partido.equipo.filter((data) => {
-                  return data === "Borja";
-                }),
-              });
-            }}
-          >
-            Eliminar equipo
-          </button> */}
                 </div>
 
                 <ul>
@@ -168,23 +147,8 @@ const ComponenteAddMatch = (datos) => {
                 </div>
                 <button
                     className="btn btn-primary"
-                    onClick={(crearPartido)}
-                // onClick={(e) => {
-                //     e.preventDefault();
-                //     datos.setMatch((valor_anterior) => {
-                //         return [...valor_anterior, partido];
-                //     });
+                    onClick={crearPartido}
 
-                //     setPartido({
-                //         dia: "",
-                //         hora: "",
-                //         organizador: "",
-                //         presupuesto: 0,
-                //         tipo: "",
-                //         equipo: [],
-                //         privado: false,
-                //     });
-                // }}
                 >
                     Agregar partido
                 </button>
@@ -194,3 +158,41 @@ const ComponenteAddMatch = (datos) => {
 }
 
 export default ComponenteAddMatch;
+// onClick={(e) => {
+//     e.preventDefault();
+//     datos.setMatch((valor_anterior) => {
+//         return [...valor_anterior, partido];
+//     });
+
+//     setPartido({
+//         dia: "",
+//         hora: "",
+//         organizador: "",
+//         presupuesto: 0,
+//         tipo: "",
+//         equipo: [],
+//         privado: false,
+//     });
+// }}
+    /* <button
+    onClick={(e) => {
+        e.preventDefault();
+        setPartido({ ...partido, equipo: equipo });
+    }}
+    >
+    Validar equipo
+    </button> */
+/* <button
+onClick={(e) => {
+e.preventDefault();
+
+setPartido({
+...partido,
+equipo: partido.equipo.filter((data) => {
+  return data === "Borja";
+}),
+});
+}}
+>
+Eliminar equipo
+</button> */

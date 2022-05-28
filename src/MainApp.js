@@ -5,18 +5,30 @@ import Navegacion from './Navegacion';
 import ComponenteAddMatch from './ComponenteAddMatch';
 import ComponenteListPartidos from './ComponenteListPartidos';
 import { db } from './firebase-config'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, updateDocs, doc, deleteDoc } from 'firebase/firestore'
 
 
 const MainApp = props => {
 
 
-
+  console.log('props', props);
   const [partidos, setPartidos] = useState([]);
-  console.log(partidos);
+  console.log('partidos', partidos);
   const partidosCollectionRef = collection(db, 'partidos');
 
-
+  const updateMatch = async (id, organizador) => {
+    console.log('id',id);
+    console.log('organizador',organizador);
+    const matchDoc = doc(db, 'partidos', id)
+    //const newFields = { organizador: "organizador" }
+    await updateMatch(matchDoc,{ 
+      organizador: 'organizador'
+    })
+  }
+  const deleteUser = async (id) => {
+    const matchDoc = doc(db, "partidos", id);
+    await deleteDoc(matchDoc);
+  };
 
   useEffect(() => {
     const getPartidos = async () => {
@@ -32,13 +44,30 @@ const MainApp = props => {
   });
   return (
     <div className="App container">
-      {partidos.map((partido) => {
-        return (<div>
-          {" "}
-          <h1>Dia: {partido.dia}</h1>
-          <h1>Hora: {partido.hora}</h1>
-          <h1>Organizador: {partido.organizador}</h1>
-        </div>)
+      {partidos.map((partido, index) => {
+        return (
+          <div key={index}> Partido {index + 1}
+            {" "}
+            <h1>Dia: {partido.dia}</h1>
+            <h1>Hora: {partido.hora}</h1>
+            <h1>Organizador: {partido.organizador}</h1>
+            <button
+              onClick={() => {
+                updateMatch(partido.id, partido.organizador);
+              }}
+            >
+              {" "}
+              Modificar partido
+            </button>
+            <button
+              onClick={() => {
+                deleteUser(partido.id);
+              }}
+            >
+              {" "}
+              Borrar partido
+            </button>
+          </div>)
       })}
       <Navegacion visualizacion={setVisualizacion} />
       <div className="container mt-4">
