@@ -2,7 +2,16 @@ html,
 body {
   color: #21232a;
   background-color: white;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Nimbus Sans", Commissioner, monospace;
   font-size: 1.3rem;
   margin: 0;
+}
+.card-header {
+  background-color: rgb(144, 185, 201);
+}
+.carta {
+  background-color: rgb(200, 220, 228);
+}
+.card-footer {
+  background-color: rgb(144, 185, 201);
 }

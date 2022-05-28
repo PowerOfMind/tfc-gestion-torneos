@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -78,7 +79,7 @@ const MainApp = props => {
           <div className="col-8">
             <ComponenteAddMatch setMatch={setPartidos} />
           </div>
-          <div className="col-8">
+          <div className="col-12">
             <ComponenteListPartidos list={partidos} />
           </div>
 
