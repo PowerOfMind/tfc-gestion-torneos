@@ -105,6 +105,7 @@ const MainApp = (props) => {
             <ComponenteListPartidos list={partidos} />
           </div>
         </div>
+        <hr></hr>
         <div className="row mt-4">
           <div className="col-12">
             <ComponenteAddMatch setMatch={setPartidos} />
