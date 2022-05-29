@@ -11,35 +11,39 @@ import {
 } from "firebase/firestore";
 
 const ComponenteListPartidos = (props) => {
-  const partidosCollectionRef = collection(db, "partidos");
+
+  // const previousMessages = [];
+  //const partidosCollectionRef = collection(db, "partidos");
 
   
-  const updateMatch = async (id, organizador) => {
-    console.log("id", id);
-    console.log("organizador", organizador);
-    const matchDoc = doc(db, "partidos", id);
-    //const newFields = { organizador: "organizador" }
-    await updateMatch(matchDoc, {
-      organizador: "organizador",
-    });
-  };
+  // const updateMatch = async (id, organizador) => {
+  //   console.log("id", id);
+  //   console.log("organizador", organizador);
+  //   const matchDoc = doc(db, "partidos", id);
+  //   //const newFields = { organizador: "organizador" }
+  //   await updateMatch(matchDoc, {
+  //     organizador: "organizador",
+  //   });
+  // };
+  
   const deleteUser = async (id) => {
     const matchDoc = doc(db, "partidos", id);
     await deleteDoc(matchDoc);
+    
   };
 
   return (
     <div className="justify-content-center">
       <h2>Próximos partidos</h2>
-
+    
       {/* card */}
       {props.list.length > 0 ? (
         <div>
           {props.list.map((item, index) => {
             return (
-              <div className="card text-center m-2 border-0">
+              <div className="card text-center m-2 border-0" key={item.id}>
                 <div className="card-body">
-                  <div className="card-header" key={index}>
+                  <div className="card-header" >
                     PARTIDO
                   </div>
                   <div className="card-body carta">
@@ -53,12 +57,13 @@ const ComponenteListPartidos = (props) => {
                   </div>
                   <div className="card-footer text-muted">
                     <button
-                      class="noselect delete"
+                      className="noselect delete"
                     >
-                      <span class="text">Borrar</span>
-                      <span class="icon">
+                      <span className="text">Borrar</span>
+                      <span className="icon">
                         <svg
                         onClick={() => {
+                          
                           deleteUser(item.id);
                         }}
                           xmlns="http://www.w3.org/2000/svg"

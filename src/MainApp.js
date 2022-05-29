@@ -42,7 +42,7 @@ const MainApp = (props) => {
   useEffect(() => {
     const getPartidos = async () => {
       const data = await getDocs(partidosCollectionRef);
-      setPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setPartidos(data.docs.map((doc) => (({ ...doc.data(), id: doc.id }))));
     };
     getPartidos();
   }, []);
