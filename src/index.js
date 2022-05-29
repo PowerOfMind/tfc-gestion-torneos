@@ -1,10 +1,14 @@
 import React from "react";
-import {createRoot} from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import './index.css';
-import MainApp from "./MainApp";
+import App from "./App";
 
 
 const divRoot = document.querySelector('#root');
 const root = createRoot(divRoot);
 
-root.render(<MainApp/>);
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
