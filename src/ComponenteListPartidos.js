@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import PropTypes from "prop-types";
+import { db } from './firebase-config'
+import { collection, getDocs, updateDocs, doc, deleteDoc } from 'firebase/firestore'
 
 const ComponenteListPartidos = (props) => {
+
+  const partidosCollectionRef = collection(db, 'partidos');
+
+  const updateMatch = async (id, organizador) => {
+    console.log('id', id);
+    console.log('organizador', organizador);
+    const matchDoc = doc(db, 'partidos', id)
+    //const newFields = { organizador: "organizador" }
+    await updateMatch(matchDoc, {
+      organizador: 'organizador'
+    })
+  }
+  const deleteUser = async (id) => {
+    const matchDoc = doc(db, "partidos", id);
+    await deleteDoc(matchDoc);
+  };
+
   return (
     <div className="justify-content-center">
       <div className="mb-5">
@@ -12,17 +31,27 @@ const ComponenteListPartidos = (props) => {
           <div>
             {props.list.map((item, index) => {
               return (
-                <div class="card text-center m-2 border-0">
-                  <div class="card-body">
-                    <div class="card-header">PARTIDO</div>
-                    <div class="card-body carta">
-                      <h5 class="card-title">
+                <div className="card text-center m-2 border-0">
+                  <div className="card-body">
+                    <div className="card-header" key={index} >PARTIDO</div>
+                    <div className="card-body carta">
+                      <h5 className="card-title">
                         Organizador: {item.organizador} - Integrantes:{" "}
-                        {item.equipo}/10
+                        {(item.equipo).length}/10
                       </h5>
                     </div>
-                    <div class="card-footer text-muted">
+                    <div className="card-footer text-muted">
                       Fecha: {item.dia} - Hora:{item.hora}
+                    </div>
+                    <div className="card-footer text-muted">
+                    <button
+                        onClick={() => {
+                          deleteUser(item.id);
+                        }}
+                      >
+                        {" "}
+                        Borrar partido
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -32,37 +61,6 @@ const ComponenteListPartidos = (props) => {
         ) : (
           <div className="alert">No hay partidos añadidos</div>
         )}
-
-        {/* termina la card */}
-        {/* <ul className="list-group">
-          {props.list.length > 0 ? (
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">ORGANIZADOR</th>
-                  <th scope="col">FECHA</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {props.list.map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      <th scope="row">{index + 1}</th>
-                      <td>{item.organizador}</td>
-                      <td>
-                        {item.dia}-{item.hora}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          ) : (
-            <div className="alert">No hay partidos añadidos</div>
-          )}
-        </ul> */}
       </div>
     </div>
   );

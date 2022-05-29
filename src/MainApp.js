@@ -9,6 +9,8 @@ import { db } from './firebase-config'
 import { collection, getDocs, updateDocs, doc, deleteDoc } from 'firebase/firestore'
 
 
+
+
 const MainApp = props => {
 
 
@@ -17,19 +19,19 @@ const MainApp = props => {
   console.log('partidos', partidos);
   const partidosCollectionRef = collection(db, 'partidos');
 
-  const updateMatch = async (id, organizador) => {
-    console.log('id',id);
-    console.log('organizador',organizador);
-    const matchDoc = doc(db, 'partidos', id)
-    //const newFields = { organizador: "organizador" }
-    await updateMatch(matchDoc,{ 
-      organizador: 'organizador'
-    })
-  }
-  const deleteUser = async (id) => {
-    const matchDoc = doc(db, "partidos", id);
-    await deleteDoc(matchDoc);
-  };
+  // const updateMatch = async (id, organizador) => {
+  //   console.log('id', id);
+  //   console.log('organizador', organizador);
+  //   const matchDoc = doc(db, 'partidos', id)
+  //   //const newFields = { organizador: "organizador" }
+  //   await updateMatch(matchDoc, {
+  //     organizador: 'organizador'
+  //   })
+  // }
+  // const deleteUser = async (id) => {
+  //   const matchDoc = doc(db, "partidos", id);
+  //   await deleteDoc(matchDoc);
+  // };
 
   useEffect(() => {
     const getPartidos = async () => {
@@ -44,8 +46,9 @@ const MainApp = props => {
     // componenteFiltro: false,
   });
   return (
+    
     <div className="App container">
-      {partidos.map((partido, index) => {
+      {/* {partidos.map((partido, index) => {
         return (
           <div key={index}> Partido {index + 1}
             {" "}
@@ -69,20 +72,20 @@ const MainApp = props => {
               Borrar partido
             </button>
           </div>)
-      })}
-      <Navegacion visualizacion={setVisualizacion} />
+      })} */}
+      {/* <Navegacion visualizacion={setVisualizacion} /> */}
       <div className="container mt-4">
         <h1>Aplicación de gestión de Partidos y torneos de Volleyball</h1>
         <h2>El número de partidos actuales es de: {partidos.length}</h2>
-
+        <div className="row mt-4">
+          <div className="col-10">
+            <ComponenteListPartidos list={partidos} />
+          </div>
+        </div>
         <div className="row mt-4">
           <div className="col-8">
             <ComponenteAddMatch setMatch={setPartidos} />
           </div>
-          <div className="col-12">
-            <ComponenteListPartidos list={partidos} />
-          </div>
-
         </div>
       </div>
     </div>
