@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/tfc-gestion-torneos",
     "ignore": [
       "firebase.json",
       "**/.*",
