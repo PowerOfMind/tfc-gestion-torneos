@@ -13,6 +13,7 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
+import Footer from "./Footer";
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
@@ -39,27 +40,67 @@ const MainApp = (props) => {
   useEffect(() => {
     const getPartidos = async () => {
       const data = await getDocs(partidosCollectionRef);
-      setPartidos(data.docs.map((doc) => (({ ...doc.data(), id: doc.id }))));
+      setPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPartidos();
   }, []);
   
   return (
+
     <div className="App container">
       <div className="container mt-4">
+
+    <div className="App ">
+      {/* {partidos.map((partido, index) => {
+        return (
+          <div key={index}> Partido {index + 1}
+            {" "}
+            <h1>Dia: {partido.dia}</h1>
+            <h1>Hora: {partido.hora}</h1>
+            <h1>Organizador: {partido.organizador}</h1>
+            <button
+              onClick={() => {
+                updateMatch(partido.id, partido.organizador);
+              }}
+            >
+              {" "}
+              Modificar partido
+            </button>
+            <button
+              onClick={() => {
+                deleteUser(partido.id);
+              }}
+            >
+              {" "}
+              Borrar partido
+            </button>
+          </div>)
+      })} */}
+      {/* <Navegacion visualizacion={setVisualizacion} /> */}
+      <div className="container mt-4 container">
+
         <h1>SPORT-MENTS</h1>
-        <h2>El número de partidos actuales es de: {partidos.length}</h2>
+        <h2>Partidos actuales: {partidos.length}</h2>
         <div
           id="carouselExampleSlidesOnly"
           className="carousel slide"
           data-bs-ride="carousel"
         >
-          <div className="carousel-inner">
-            <div className="carousel-item active" data-bs-interval="100">
-              <img src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg" className="d-block w-100" alt="..." />
+
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="100">
+              <img
+                src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
             </div>
-            <div className="carousel-item">
-              <img src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg" className="d-block w-100" alt="..." />
+            <div class="carousel-item">
+              <img
+                src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
             </div>
             <div className="carousel-item">
               <img src="..." className="d-block w-100" alt="..." />
@@ -79,6 +120,7 @@ const MainApp = (props) => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
