@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import './listaPartidos.css';
-import { db } from "./firebase-config";
+import { auth, db } from "./firebase-config";
 import {
   collection,
   getDocs,
@@ -10,46 +10,55 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const ComponenteListPartidos = (props) => {
+const ComponenteListPartidos = ({ isAuth }) => {
 
-  // const previousMessages = [];
-  //const partidosCollectionRef = collection(db, "partidos");
+  const [listaPartidos, setListaPartidos] = useState([]);
+  const partidosCollectionRef = collection(db, "partidos");
 
-  
-  // const updateMatch = async (id, organizador) => {
+  const deletePartido = async (id) => {
+    const matchDoc = doc(db, "partidos", id);
+    await deleteDoc(matchDoc);
+  };
+  useEffect(() => {
+    const getpartidos = async () => {
+      const data = await getDocs(partidosCollectionRef);
+      setListaPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    getpartidos();
+  }, [], [deletePartido]);
+
+
+
+  // const updateMatch = async (id, nuevoIntegrante) => {
   //   console.log("id", id);
-  //   console.log("organizador", organizador);
+  //   console.log("organizador", nuevoIntegrante);
   //   const matchDoc = doc(db, "partidos", id);
   //   //const newFields = { organizador: "organizador" }
   //   await updateMatch(matchDoc, {
-  //     organizador: "organizador",
+  //     equipo: nuevoIntegrante,
   //   });
   // };
-  
-  const deleteUser = async (id) => {
-    const matchDoc = doc(db, "partidos", id);
-    await deleteDoc(matchDoc);
-    
-  };
+
+
 
   return (
     <div className="justify-content-center">
       <h2>Próximos partidos</h2>
-    
       {/* card */}
-      {props.list.length > 0 ? (
+      {listaPartidos.length > 0 ? (
         <div>
-          {props.list.map((item, index) => {
+          {listaPartidos.map((item, index) => {
             return (
               <div className="card text-center m-2 border-0" key={item.id}>
                 <div className="card-body">
                   <div className="card-header" >
-                    PARTIDO
+                    <p className="uppercase">{item.tipo}</p>
                   </div>
                   <div className="card-body carta">
                     <h5 className="card-title">
-                      Organizador: {item.organizador} - Integrantes:{" "}
-                      {item.equipo.length}/10
+                      Organizador: {item.organizador.name} - Integrantes:{" "}
+                      {item.equipo}/10
                     </h5>
                   </div>
                   <div className="card-footer text-muted">
@@ -62,10 +71,10 @@ const ComponenteListPartidos = (props) => {
                       <span className="text">Borrar</span>
                       <span className="icon">
                         <svg
-                        onClick={() => {
-                          
-                          deleteUser(item.id);
-                        }}
+                          onClick={() => {
+
+                            deletePartido(item.id);
+                          }}
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
                           height="24"
@@ -75,6 +84,25 @@ const ComponenteListPartidos = (props) => {
                         </svg>
                       </span>
                     </button>
+                    {isAuth && item.organizador.id === auth.currentUser.uid && (
+                      <button
+                        onClick={() => {
+                          deletePartido(item.id);
+                        }}
+                      >
+                        {" "}
+                        &#128465;
+                      </button>
+                    )}
+                    {/* {!isAuth && item.organizador.id === auth.currentUser.uid && (
+                    <button
+                      className="btn btn-primary mb-3"
+                      onClick={() => {
+                        // updateMatch(item.id, item.integrante + 1)
+                      }
+                      }>
+                      unirse
+                    </button> )} */}
                   </div>
                 </div>
               </div>
