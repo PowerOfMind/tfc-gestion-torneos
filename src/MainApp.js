@@ -20,7 +20,8 @@ import {
 ></script>;
 
 const MainApp = (props) => {
-  console.log("props", props);
+
+  
   const [partidos, setPartidos] = useState([]);
   console.log("partidos", partidos);
   const partidosCollectionRef = collection(db, "partidos");
@@ -34,10 +35,6 @@ const MainApp = (props) => {
   //     organizador: 'organizador'
   //   })
   // }
-  // const deleteUser = async (id) => {
-  //   const matchDoc = doc(db, "partidos", id);
-  //   await deleteDoc(matchDoc);
-  // };
 
   useEffect(() => {
     const getPartidos = async () => {
@@ -46,69 +43,39 @@ const MainApp = (props) => {
     };
     getPartidos();
   }, []);
-  const [visualizacion, setVisualizacion] = useState({
-    componenteAddMatch: true,
-    // componenteTodos: true,
-    // componenteFiltro: false,
-  });
+  
   return (
     <div className="App container">
-      {/* {partidos.map((partido, index) => {
-        return (
-          <div key={index}> Partido {index + 1}
-            {" "}
-            <h1>Dia: {partido.dia}</h1>
-            <h1>Hora: {partido.hora}</h1>
-            <h1>Organizador: {partido.organizador}</h1>
-            <button
-              onClick={() => {
-                updateMatch(partido.id, partido.organizador);
-              }}
-            >
-              {" "}
-              Modificar partido
-            </button>
-            <button
-              onClick={() => {
-                deleteUser(partido.id);
-              }}
-            >
-              {" "}
-              Borrar partido
-            </button>
-          </div>)
-      })} */}
-      {/* <Navegacion visualizacion={setVisualizacion} /> */}
       <div className="container mt-4">
         <h1>SPORT-MENTS</h1>
         <h2>El número de partidos actuales es de: {partidos.length}</h2>
         <div
           id="carouselExampleSlidesOnly"
-          class="carousel slide"
+          className="carousel slide"
           data-bs-ride="carousel"
         >
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="100">
-              <img src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg" class="d-block w-100" alt="..." />
+          <div className="carousel-inner">
+            <div className="carousel-item active" data-bs-interval="100">
+              <img src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg" className="d-block w-100" alt="..." />
             </div>
-            <div class="carousel-item">
-              <img src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg" class="d-block w-100" alt="..." />
+            <div className="carousel-item">
+              <img src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg" className="d-block w-100" alt="..." />
             </div>
-            <div class="carousel-item">
-              <img src="..." class="d-block w-100" alt="..." />
+            <div className="carousel-item">
+              <img src="..." className="d-block w-100" alt="..." />
             </div>
           </div>
         </div>
         <hr></hr>
         <div className="row mt-4">
           <div className="col-12">
-            <ComponenteListPartidos list={partidos} />
+            <ComponenteListPartidos /*list={partidos}*/ />
           </div>
         </div>
         <hr></hr>
         <div className="row mt-4">
           <div className="col-12">
-            <ComponenteAddMatch setMatch={setPartidos} />
+            <ComponenteAddMatch /*setMatch={setPartidos} *//>
           </div>
         </div>
       </div>
