@@ -46,36 +46,7 @@ const MainApp = (props) => {
   }, []);
   
   return (
-
-    <div className="App container">
-      <div className="container mt-4">
-
     <div className="App ">
-      {/* {partidos.map((partido, index) => {
-        return (
-          <div key={index}> Partido {index + 1}
-            {" "}
-            <h1>Dia: {partido.dia}</h1>
-            <h1>Hora: {partido.hora}</h1>
-            <h1>Organizador: {partido.organizador}</h1>
-            <button
-              onClick={() => {
-                updateMatch(partido.id, partido.organizador);
-              }}
-            >
-              {" "}
-              Modificar partido
-            </button>
-            <button
-              onClick={() => {
-                deleteUser(partido.id);
-              }}
-            >
-              {" "}
-              Borrar partido
-            </button>
-          </div>)
-      })} */}
       {/* <Navegacion visualizacion={setVisualizacion} /> */}
       <div className="container mt-4 container">
 
