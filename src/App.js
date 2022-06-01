@@ -8,6 +8,7 @@ import LoginComponent from './pages/LoginComponent';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import './App.css';
+import Politica from './pages/Politica';
 
 
 const App = props => {
@@ -27,12 +28,15 @@ const App = props => {
             <Link to='/torneos'>Torneos</Link>
             <Link to='/contacto'>Contacto</Link>
             {!isAuth ? <Link to='/login'>Login</Link> : <button onClick={signUserOut}>Log out</button>}
+            
         </nav>
+
       <Routes>
           <Route path="/" element={<MainApp/>}/>
           <Route path="/torneos" element={<TournamentComponent/>}/>
           <Route path="/contacto" element={<ContactComponent/>}/>
           <Route path="/login" element={<LoginComponent setIsAuth={setIsAuth} />}/>
+          <Route path="/politica" element={<Politica/>}/>
       </Routes>
     </Router>
   )
