@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import './listaPartidos.css';
 import { auth, db } from "./firebase-config";
 import {
   collection,
-  getDocs,
-  updateDocs,
   doc,
   deleteDoc,
 } from "firebase/firestore";
@@ -20,27 +17,14 @@ const ComponenteListPartidos = ({ isAuth }) => {
     await deleteDoc(matchDoc);
   };
   useEffect(() => {
-    const getpartidos = async () => {
-      const data = await getDocs(partidosCollectionRef);
-      setListaPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-
-    getpartidos();
+    // const getpartidos = async () => {
+    //   const data = await getDocs(partidosCollectionRef);
+    //   setListaPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // };
+    let cont = 0;
+    console.log('contador',cont+1);
+    // getpartidos();
   }, [], [deletePartido]);
-
-
-
-  // const updateMatch = async (id, nuevoIntegrante) => {
-  //   console.log("id", id);
-  //   console.log("organizador", nuevoIntegrante);
-  //   const matchDoc = doc(db, "partidos", id);
-  //   //const newFields = { organizador: "organizador" }
-  //   await updateMatch(matchDoc, {
-  //     equipo: nuevoIntegrante,
-  //   });
-  // };
-
-
 
   return (
     <div className="justify-content-center">
@@ -116,6 +100,5 @@ const ComponenteListPartidos = ({ isAuth }) => {
   );
 };
 
-ComponenteListPartidos.propTypes = {};
 
 export default ComponenteListPartidos;

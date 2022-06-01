@@ -1,18 +1,8 @@
 /* eslint-disable react/jsx-no-undef */
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import Navegacion from "./Navegacion";
 import ComponenteAddMatch from "./ComponenteAddMatch";
 import ComponenteListPartidos from "./ComponenteListPartidos";
-import { db } from "./firebase-config";
-import {
-  collection,
-  getDocs,
-  updateDocs,
-  doc,
-  deleteDoc,
-} from "firebase/firestore";
 import Footer from "./Footer";
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -21,37 +11,11 @@ import Footer from "./Footer";
 ></script>;
 
 const MainApp = (props) => {
-
-  
-  const [partidos, setPartidos] = useState([]);
-  console.log("partidos", partidos);
-  const partidosCollectionRef = collection(db, "partidos");
-
-  // const updateMatch = async (id, organizador) => {
-  //   console.log('id', id);
-  //   console.log('organizador', organizador);
-  //   const matchDoc = doc(db, 'partidos', id)
-  //   //const newFields = { organizador: "organizador" }
-  //   await updateMatch(matchDoc, {
-  //     organizador: 'organizador'
-  //   })
-  // }
-
-  useEffect(() => {
-    const getPartidos = async () => {
-      const data = await getDocs(partidosCollectionRef);
-      setPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getPartidos();
-  }, []);
   
   return (
     <div className="App ">
-      {/* <Navegacion visualizacion={setVisualizacion} /> */}
       <div className="container mt-4 container">
-
         <h1>SPORT-MENTS</h1>
-        <h2>Partidos actuales: {partidos.length}</h2>
         <div
           id="carouselExampleSlidesOnly"
           className="carousel slide"
@@ -81,13 +45,13 @@ const MainApp = (props) => {
         <hr></hr>
         <div className="row mt-4">
           <div className="col-12">
-            <ComponenteListPartidos /*list={partidos}*/ />
+            <ComponenteListPartidos />
           </div>
         </div>
         <hr></hr>
         <div className="row mt-4">
           <div className="col-12">
-            <ComponenteAddMatch /*setMatch={setPartidos} *//>
+            <ComponenteAddMatch />
           </div>
         </div>
       </div>
@@ -95,7 +59,5 @@ const MainApp = (props) => {
     </div>
   );
 };
-
-MainApp.propTypes = {};
 
 export default MainApp;

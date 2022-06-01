@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import MainApp from './MainApp';
 import TournamentComponent from './pages/TournamentComponent';
@@ -45,7 +44,5 @@ const App = props => {
     </Router>
   )
 }
-
-App.propTypes = {}
 
 export default App
