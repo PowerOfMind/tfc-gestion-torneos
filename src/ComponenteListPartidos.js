@@ -29,6 +29,9 @@ const ComponenteListPartidos = ({ isAuth }) => {
   return (
     <div className="justify-content-center">
       <h2>Próximos partidos</h2>
+    
+      <h2>Próximos eventos</h2>
+
       {/* card */}
       {listaPartidos.length > 0 ? (
         <div>
@@ -94,7 +97,7 @@ const ComponenteListPartidos = ({ isAuth }) => {
           })}
         </div>
       ) : (
-        <div className="alert">No hay partidos añadidos</div>
+        <div className="alert">No hay eventos añadidos</div>
       )}
     </div>
   );

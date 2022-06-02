@@ -11,51 +11,73 @@ import Footer from "./Footer";
 ></script>;
 
 const MainApp = (props) => {
-  
-  return (
-    <div className="App ">
-      <div className="container mt-4 container">
-        <h1>SPORT-MENTS</h1>
-        <div
-          id="carouselExampleSlidesOnly"
-          className="carousel slide"
-          data-bs-ride="carousel"
-        >
+  console.log("props", props);
+  const [partidos, setPartidos] = useState([]);
+  console.log("partidos", partidos);
+  const partidosCollectionRef = collection(db, "partidos");
 
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="100">
-              <img
-                src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg"
-                class="d-block w-100"
-                alt="..."
-              />
+  // const updateMatch = async (id, organizador) => {
+  //   console.log('id', id);
+  //   console.log('organizador', organizador);
+  //   const matchDoc = doc(db, 'partidos', id)
+  //   //const newFields = { organizador: "organizador" }
+  //   await updateMatch(matchDoc, {
+  //     organizador: 'organizador'
+  //   })
+  // }
+  // const deleteUser = async (id) => {
+  //   const matchDoc = doc(db, "partidos", id);
+  //   await deleteDoc(matchDoc);
+  // };
+
+  useEffect(() => {
+    const getPartidos = async () => {
+      const data = await getDocs(partidosCollectionRef);
+      setPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getPartidos();
+  }, []);
+  const [visualizacion, setVisualizacion] = useState({
+    componenteAddMatch: true,
+    // componenteTodos: true,
+    // componenteFiltro: false,
+  });
+
+  return (
+    <div className="App">
+      <div className="row">
+        <h1 className="mt-3">SPORT-MENTS</h1>
+        <div className="col-1"></div>
+        <div className="col-8 mt-2 ">
+          <img
+            src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg"
+            class="foto w-100"
+          />
+          <hr></hr>
+          <div className="row mt-4">
+            <div className="col-12">
+              <ComponenteListPartidos />
             </div>
-            <div class="carousel-item">
-              <img
-                src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg"
-                class="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="carousel-item">
-              <img src="..." className="d-block w-100" alt="..." />
+          </div>
+          <hr></hr>
+          <div className="row mt-4">
+            <div className="col-12">
+              <ComponenteAddMatch />
             </div>
           </div>
         </div>
-        <hr></hr>
-        <div className="row mt-4">
-          <div className="col-12">
-            <ComponenteListPartidos />
-          </div>
-        </div>
-        <hr></hr>
-        <div className="row mt-4">
-          <div className="col-12">
-            <ComponenteAddMatch />
-          </div>
+        <div className="col-3">
+          <img
+            src="https://www.antevenio.com/wp-content/uploads/2015/12/redes-facebook-2.jpg"
+            className="w-100  "
+          />
+          <img
+            src="https://www.antevenio.com/wp-content/uploads/2015/12/email-amazon.jpg"
+            className="w-100"
+          />
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

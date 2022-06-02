@@ -39,7 +39,6 @@ const App = props => {
           <Route path="/login" element={<LoginComponent setIsAuth={setIsAuth} />}/>
           <Route path="/agregar-partido" element={<ComponenteAddMatch isAuth={isAuth} />}/>
           <Route path="/listar-partidos" element={<ComponenteListPartidos isAuth={isAuth} />}/>
-          <Route path="/politica" element={<Politica/>}/>
       </Routes>
     </Router>
   )

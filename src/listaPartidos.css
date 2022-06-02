@@ -63,3 +63,6 @@ button.delete:active .icon svg {
 .uppercase {
   text-transform: uppercase;
 }
+.foto{
+  height: 900px;
+}
