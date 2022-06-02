@@ -10,9 +10,6 @@ function LoginComponent({ setIsAuth }) {
   const [captchaValido, cambiarCaptchaValido] = useState(null);
   const [usuarioValido, setUsuarioValido] = useState(null);
   const captcha = useRef(null);
-import PropTypes from 'prop-types'
-
-function LoginComponent({ setIsAuth }) {
   let navigate = useNavigate();
 
   const signInWithGoogle = () => {
@@ -25,44 +22,38 @@ function LoginComponent({ setIsAuth }) {
 
   const onChange = () => {
     if (captcha.current.getValue()) {
-      console.log("El usuario no es un robot");
+      console.log('El usuario no es un robot');
+      
     }
-  };
+
+  }
 
   return (
-    <div className="">
-      {!usuarioValido && (
-        <div className="loginPage ">
-          <p className="text-center titulo mt-3">
-            Inicia sesion en Google para seguir
-          </p>
-          <div className="text-center">
-            <a
-              className="btn login-with-google-btn btn-primary "
-              onClick={signInWithGoogle}
-            >
-              Iniciar sesión
-            </a>
-          </div>
-
+    <div className="container">
+      {!usuarioValido &&
+        <div className="loginPage">
+          <p>Sign In With Google to Continue</p>
+          <button className="login-with-google-btn" onClick={signInWithGoogle}>
+            Sign in with Google
+          </button>
           <ReCAPTCHA
-            className="text-center"
-            id="captcha"
             ref={captcha}
             sitekey="6LdUuzggAAAAAHUz51SVgjkr3Hj2HNo-HRDmxkCW"
             onChange={onChange}
           />
         </div>
-      )}
-      {usuarioValido && (
+      }
+      {usuarioValido &&
         <div>
           <h1>Bienvenido</h1>
         </div>
-      )}
+      }
+
     </div>
-  );
+
+  )
 }
 
-LoginComponent.propTypes = {};
+LoginComponent.propTypes = {}
 
-export default LoginComponent;
+export default LoginComponent

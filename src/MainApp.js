@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import ComponenteAddMatch from "./ComponenteAddMatch";
@@ -11,37 +10,7 @@ import Footer from "./Footer";
 ></script>;
 
 const MainApp = (props) => {
-  console.log("props", props);
-  const [partidos, setPartidos] = useState([]);
-  console.log("partidos", partidos);
-  const partidosCollectionRef = collection(db, "partidos");
-
-  // const updateMatch = async (id, organizador) => {
-  //   console.log('id', id);
-  //   console.log('organizador', organizador);
-  //   const matchDoc = doc(db, 'partidos', id)
-  //   //const newFields = { organizador: "organizador" }
-  //   await updateMatch(matchDoc, {
-  //     organizador: 'organizador'
-  //   })
-  // }
-  // const deleteUser = async (id) => {
-  //   const matchDoc = doc(db, "partidos", id);
-  //   await deleteDoc(matchDoc);
-  // };
-
-  useEffect(() => {
-    const getPartidos = async () => {
-      const data = await getDocs(partidosCollectionRef);
-      setPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getPartidos();
-  }, []);
-  const [visualizacion, setVisualizacion] = useState({
-    componenteAddMatch: true,
-    // componenteTodos: true,
-    // componenteFiltro: false,
-  });
+  
 
   return (
     <div className="App">
@@ -51,7 +20,7 @@ const MainApp = (props) => {
         <div className="col-8 mt-2 ">
           <img
             src="https://cdn.pixabay.com/photo/2021/07/20/14/06/sport-6480830_960_720.jpg"
-            class="foto w-100"
+            className="foto w-100" alt="imagen1"
           />
           <hr></hr>
           <div className="row mt-4">
@@ -70,10 +39,11 @@ const MainApp = (props) => {
           <img
             src="https://www.antevenio.com/wp-content/uploads/2015/12/redes-facebook-2.jpg"
             className="w-100  "
+            alt="imagen"
           />
           <img
             src="https://www.antevenio.com/wp-content/uploads/2015/12/email-amazon.jpg"
-            className="w-100"
+            className="w-100" alt="imagen2"
           />
         </div>
       </div>
