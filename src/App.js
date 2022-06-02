@@ -9,7 +9,6 @@ import { auth } from "./firebase-config";
 import ComponenteAddMatch from './ComponenteAddMatch';
 import './App.css';
 import ComponenteListPartidos from './ComponenteListPartidos';
-import Politica from './pages/Politica';
 
 const App = props => {
   const [isAuth, setIsAuth] = useState(false)
