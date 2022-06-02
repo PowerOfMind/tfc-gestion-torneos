@@ -27,9 +27,7 @@ const ComponenteListPartidos = ({ isAuth }) => {
   }, [], [deletePartido]);
 
   return (
-    <div className="justify-content-center">
-      <h2>Próximos partidos</h2>
-    
+    <div className="justify-content-center">    
       <h2>Próximos eventos</h2>
 
       {/* card */}
