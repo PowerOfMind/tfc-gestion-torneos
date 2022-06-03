@@ -11,24 +11,24 @@ import './App.css';
 import ComponenteListPartidos from './ComponenteListPartidos';
 
 const App = props => {
-  const [isAuth, setIsAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
-  const signUserOut = () => {
+  /* const signUserOut = () => {
     signOut(auth).then(() => {
       localStorage.clean()
       setIsAuth(false)
       window.location.pathname = "/login"
     })
-  }
+  } */
   return (
     <Router>
         <nav>
             <Link to='/'>Home</Link>
             <Link to='/torneos'>Torneos</Link>
             <Link to='/contacto'>Contacto</Link>
-            {!isAuth ? <Link to='/login'>Login</Link> : <button onClick={signUserOut}>Log out</button>}
+            {/* {!isAuth ? <Link to='/login'>Login</Link> : <button onClick={signUserOut}>Log out</button>} */}
 
-            {/* <Link to='/login'>Login</Link> */}
+            <Link to='/login'>Login</Link>
         </nav>
 
       <Routes>

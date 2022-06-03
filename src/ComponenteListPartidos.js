@@ -5,29 +5,39 @@ import {
   collection,
   doc,
   deleteDoc,
+  getDocs
 } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const ComponenteListPartidos = ({ isAuth }) => {
 
+  let navigate = useNavigate();
+
   const [listaPartidos, setListaPartidos] = useState([]);
+  const [randstate, setRandstate] = useState(0);
   const partidosCollectionRef = collection(db, "partidos");
+  console.log('auth: ' , auth);
 
   const deletePartido = async (id) => {
+    setRandstate(randstate + 1);
     const matchDoc = doc(db, "partidos", id);
     await deleteDoc(matchDoc);
+    /*window.location.reload() */
   };
   useEffect(() => {
-    // const getpartidos = async () => {
-    //   const data = await getDocs(partidosCollectionRef);
-    //   setListaPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // };
-    let cont = 0;
-    console.log('contador',cont+1);
-    // getpartidos();
-  }, [], [deletePartido]);
+    const getpartidos = async () => {
+      const data = await getDocs(partidosCollectionRef);
+      setListaPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      let cont = 0;
+      console.log('contador', cont + 1);
+    };
+
+    getpartidos();
+  }, [randstate]);
+
 
   return (
-    <div className="justify-content-center">    
+    <div className="justify-content-center">
       <h2>Próximos eventos</h2>
 
       {/* card */}
@@ -49,6 +59,7 @@ const ComponenteListPartidos = ({ isAuth }) => {
                   <div className="card-footer text-muted">
                     Fecha: {item.dia} - Hora: {item.hora}
                   </div>
+                  {!isAuth && item.organizador.id === auth.currentUser.uid && (
                   <div className="card-footer text-muted">
                     <button
                       className="noselect delete"
@@ -69,26 +80,9 @@ const ComponenteListPartidos = ({ isAuth }) => {
                         </svg>
                       </span>
                     </button>
-                    {isAuth && item.organizador.id === auth.currentUser.uid && (
-                      <button
-                        onClick={() => {
-                          deletePartido(item.id);
-                        }}
-                      >
-                        {" "}
-                        &#128465;
-                      </button>
-                    )}
-                    {/* {!isAuth && item.organizador.id === auth.currentUser.uid && (
-                    <button
-                      className="btn btn-primary mb-3"
-                      onClick={() => {
-                        // updateMatch(item.id, item.integrante + 1)
-                      }
-                      }>
-                      unirse
-                    </button> )} */}
+                    
                   </div>
+                  )}
                 </div>
               </div>
             );
