@@ -21,7 +21,6 @@ function LoginComponent({ setIsAuth }) {
 
   const onChange = () => {
     if (captcha.current.getValue()) {
-
       console.log('El usuario no es un robot');
       setUsuarioValido(true)
     }

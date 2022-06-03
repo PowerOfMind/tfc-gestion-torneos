@@ -24,14 +24,12 @@ const ComponenteListPartidos = ({ isAuth }) => {
     await deleteDoc(matchDoc);
     /*window.location.reload() */
   };
+  
   useEffect(() => {
     const getpartidos = async () => {
       const data = await getDocs(partidosCollectionRef);
       setListaPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      let cont = 0;
-      console.log('contador', cont + 1);
     };
-
     getpartidos();
   }, [randstate]);
 
