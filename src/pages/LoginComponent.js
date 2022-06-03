@@ -19,9 +19,9 @@ function LoginComponent({ setIsAuth }) {
     });
   };
 
-  const signinAnonimously = () => {
+  /* const signinAnonimously = () => {
     auth.signInAnonymously().catch(alert);
-}
+  } */
 
   const onChange = () => {
     if (captcha.current.getValue()) {
@@ -56,9 +56,9 @@ function LoginComponent({ setIsAuth }) {
           <button className="login-with-google-btn" onClick={signInWithGoogle}>
             Sign in con Google
           </button>
-          <button className="login-btn" onClick={signinAnonimously}>
+          {/* <button className="login-btn" onClick={signinAnonimously}>
             Sign in anonimo
-          </button>
+          </button> */}
 
         </div>
         :
