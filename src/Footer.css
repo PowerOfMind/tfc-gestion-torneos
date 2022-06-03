@@ -1,9 +1,7 @@
-.footer{
-    background: black;
-    width: 100%;
-    color: white;
-    height: 100%;
+.footer {
+  background: black;
+  color: white;
 }
-.copy:hover{
-    color:grey !important;
+.copy:hover {
+  color: grey !important;
 }

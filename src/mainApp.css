@@ -1,13 +1,23 @@
 #anuncio2{
     width:80%;
 }
-#MainApp{
-    width:100%;
+/* #MainApp{
+    width:80%;
 }
 #fila{
     width:80%;
-}
+} */
 .foto{
-    width: 80%;
-    height:50%;
+    height:auto;
+}
+.container{
+    width:80%;
+}
+#anuncio{
+    width:auto;
+    height:auto;
+}
+#anuncio2{
+    width:150%;
+    height:auto;
 }

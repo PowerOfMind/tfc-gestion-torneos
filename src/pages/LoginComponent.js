@@ -3,10 +3,10 @@ import { auth, provider } from "../firebase-config";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
-import PropTypes from "prop-types";
 import "./login.css";
+
 function LoginComponent({ setIsAuth }) {
-  const [captchaValido, cambiarCaptchaValido] = useState(null);
+
   const [usuarioValido, setUsuarioValido] = useState(null);
   const captcha = useRef(null);
   let navigate = useNavigate();
@@ -19,14 +19,18 @@ function LoginComponent({ setIsAuth }) {
     });
   };
 
+  /* const signinAnonimously = () => {
+    auth.signInAnonymously().catch(alert);
+  } */
+
   const onChange = () => {
     if (captcha.current.getValue()) {
-      console.log("El usuario no es un robot");
-      setUsuarioValido(true);
-    } /* else {
-      setUsuarioValido(false)
-    } */
-  };
+
+      console.log('El usuario no es un robot');
+      setUsuarioValido(true)
+    }
+  }
+
 
   const signUserOut = () => {
     signOut(auth).then(() => {
@@ -44,6 +48,7 @@ function LoginComponent({ setIsAuth }) {
           sitekey="6LdUuzggAAAAAHUz51SVgjkr3Hj2HNo-HRDmxkCW"
           onChange={onChange}
         />
+
         <div className="row">
           <div className="col-2"></div>
           <div className="col-5"></div>
@@ -74,6 +79,7 @@ function LoginComponent({ setIsAuth }) {
               <h1>Bienvenido</h1>
             </div>
           )}
+
         </div>
 
         {usuarioValido ? (
@@ -103,7 +109,5 @@ function LoginComponent({ setIsAuth }) {
     </div>
   );
 }
-
-LoginComponent.propTypes = {};
 
 export default LoginComponent;
