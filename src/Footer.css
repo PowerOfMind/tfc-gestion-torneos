@@ -4,6 +4,6 @@
     color: white;
     height: 100%;
 }
-.copy{
-    size:5px;
+.copy:hover{
+    color:grey !important;
 }

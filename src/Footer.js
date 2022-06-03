@@ -9,15 +9,15 @@ const Footer = () => {
           <div className="col-4 mt-4">
             <a
               href="https://www.privacypolicies.com/live/ee67eaf0-e568-40fc-91fd-602c4d0b43af"
-              className=""
+              className="copy"
             >
               Política de Privacidad
             </a>
           </div>
-          <div className="col-4 mt-4">
+          <div className="col-4 mt-3 mb-2">
             Contacto: <br></br>sport-ments@gmail.com
           </div>
-          <div className="col-4 mt-4">
+          <div className="col-4 mt-3 mb-2">
             © Sport-ments.com, <br></br> Inc. o sus afiliados
           </div>
         </div>
