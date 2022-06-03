@@ -65,5 +65,5 @@ button.delete:active .icon svg {
   text-transform: uppercase;
 }
 .foto{
-  height: 900px;
+  height: auto;
 }

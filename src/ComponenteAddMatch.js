@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db, auth } from "./firebase-config";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import "react-datepicker/dist/react-datepicker.css";
 import "./addPartidos.css";
 import { useNavigate } from "react-router-dom";
@@ -20,20 +20,11 @@ const ComponenteAddMatch = ({ isAuth }) => {
 
 
   const [tipo, setTipo] = useState(["Seleccione tipo", "Voley pista", "Voley playa", "Fut-Voley"]);
-  /*  const [partido, setPartido] = useState({
-     dia: "",
-     hora: "",
-     organizador: "",
-     presupuesto: 0,
-     tipo: "",
-     equipo: [],
-     privado: false,
-   }); */
 
-   const handleInput = (input) => {
-    // input.preventDefault();
+  const handleInput = (input) => {
+    input.preventDefault();
     crearPartido();
-   }
+  }
 
   const crearPartido = async () => {
 
@@ -50,19 +41,16 @@ const ComponenteAddMatch = ({ isAuth }) => {
 
     );
     navigate("/");
-    // eslint-disable-next-line no-undef
-    // preventDefault();
   };
 
   useEffect(() => {
     if (auth.currentUser === null) {
-      navigate("/");
+      navigate("/login");
     }
   }, []);
 
   return (
-    <>
-
+    <div >
       <h2>Agregar partido</h2>
       {isAuth !== null ?
         (<form>
@@ -136,7 +124,7 @@ const ComponenteAddMatch = ({ isAuth }) => {
             </div>
           </div>
 
-          <button className="btn btn-primary mb-3" onClick={handleInput}>
+          <button className="btn btn-primary mb-4" onClick={handleInput}>
             Agregar partido
           </button>
         </form>) :
@@ -144,7 +132,7 @@ const ComponenteAddMatch = ({ isAuth }) => {
           Debes iniciar sesion para agregar un partido
         </div>
       }
-    </>
+    </div>
   );
 };
 

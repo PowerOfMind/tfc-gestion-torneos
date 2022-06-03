@@ -3,11 +3,10 @@ import { auth, provider } from "../firebase-config";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
-import PropTypes from "prop-types";
 import "./login.css";
+
 function LoginComponent({ setIsAuth }) {
 
-  const [captchaValido, cambiarCaptchaValido] = useState(null);
   const [usuarioValido, setUsuarioValido] = useState(null);
   const captcha = useRef(null);
   let navigate = useNavigate();
@@ -20,15 +19,15 @@ function LoginComponent({ setIsAuth }) {
     });
   };
 
+  const signinAnonimously = () => {
+    auth.signInAnonymously().catch(alert);
+}
+
   const onChange = () => {
     if (captcha.current.getValue()) {
       console.log('El usuario no es un robot');
       setUsuarioValido(true)
-    } /* else {
-      setUsuarioValido(false)
-    } */
-
-
+    }
   }
 
   const signUserOut = () => {
@@ -55,13 +54,16 @@ function LoginComponent({ setIsAuth }) {
         <div className="loginPage">
           <p>Sign In With Google to Continue</p>
           <button className="login-with-google-btn" onClick={signInWithGoogle}>
-            Sign in with Google
+            Sign in con Google
+          </button>
+          <button className="login-btn" onClick={signinAnonimously}>
+            Sign in anonimo
           </button>
 
         </div>
         :
         <div>
-          <h1></h1>
+          <h1> </h1>
 
         </div>
 
@@ -78,7 +80,5 @@ function LoginComponent({ setIsAuth }) {
     </div>
   );
 }
-
-LoginComponent.propTypes = {};
 
 export default LoginComponent;

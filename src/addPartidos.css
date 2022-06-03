@@ -1,10 +1,8 @@
 .anadir {
   background: white;
   border: 0;
-  height: 48px;
   border-radius: 2px;
   display: flex;
-  width: 305px;
   align-items: center;
   text-align: center;
 }
@@ -38,3 +36,4 @@
 .closebtn:hover {
   color: black;
 }
+

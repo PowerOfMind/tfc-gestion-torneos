@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 import MainApp from "./MainApp";
 import TournamentComponent from "./pages/TournamentComponent";
 import ContactComponent from "./pages/ContactComponent";
 import LoginComponent from "./pages/LoginComponent";
-import { signOut } from "firebase/auth";
-import { auth } from "./firebase-config";
 import ComponenteAddMatch from './ComponenteAddMatch';
-import './App.css';
 import ComponenteListPartidos from './ComponenteListPartidos';
+
+import './App.css';
 
 const App = props => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -25,7 +25,7 @@ const App = props => {
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a to="" className="nav-link disabled">Sportments</a>
+        <a href="/#" className="nav-link disabled">Sportments</a>
         <div
           class="navbar-collapse collapse justify-content-between align-items-center w-100"
           id="collapsingNavbar2"
@@ -44,53 +44,8 @@ const App = props => {
               <Link to="/login" className="nav-link">Login</Link>
             </li>
           </ul>
-          <ul class="nav navbar-nav flex-row justify-content-md-center justify-content-start flex-nowrap">
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="fa-brands fa-twitter-square"></i>
-              </a>{" "}
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="fa-brands fa-twitter-square"></i>
-              </a>{" "}
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="fa-brands fa-twitter-square"></i>
-              </a>{" "}
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="fa-brands fa-twitter-square"></i>
-              </a>{" "}
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-
-              </a>{" "}
-            </li>
-
-          </ul>
         </div>
       </nav>
-
-      {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top  ">
-        <div className="container-fluid">
-          <div className="mx-auto order-0 " id="navbarNavAltMarkup">
-            <div className="navbar-nav " >
-              <Link to="/" className="nav-link">Home</Link>
-              <Link to="/torneos" className="nav-link">Torneos</Link>
-              <Link to="/contacto" className="nav-link">Contacto</Link>
-              {!isAuth ? (
-                <Link to="/login" className="nav-link">Login</Link>
-              ) : (
-                <button onClick={signUserOut}>Log out</button>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav> */}
 
       <Routes>
         <Route path="/" element={<MainApp isAuth={isAuth} />} />
