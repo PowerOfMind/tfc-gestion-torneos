@@ -22,7 +22,7 @@ const App = (props) => {
   };
   return (
     <Router>
-      <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-md-center justify-content-start">
+      <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-md-center sticky-top justify-content-start">
         <button
           class="navbar-toggler ml-1"
           type="button"

@@ -34,7 +34,7 @@ function LoginComponent({ setIsAuth }) {
         <div className="col-5"></div>
         {!usuarioValido && (
           <div className="loginPage">
-            <h1 className="text-center">Bienvenido</h1>
+            <h1 className="text-center mt-4">Bienvenido</h1>
             <p className="text-center mt-4">
               Inicia sesión en google para continuar
             </p>
