@@ -19,10 +19,6 @@ function LoginComponent({ setIsAuth }) {
     });
   };
 
-  /* const signinAnonimously = () => {
-    auth.signInAnonymously().catch(alert);
-  } */
-
   const onChange = () => {
     if (captcha.current.getValue()) {
 
@@ -43,17 +39,11 @@ function LoginComponent({ setIsAuth }) {
   return (
     <div className="container">
       <div>
-        <ReCAPTCHA
-          ref={captcha}
-          sitekey="6LdUuzggAAAAAHUz51SVgjkr3Hj2HNo-HRDmxkCW"
-          onChange={onChange}
-        />
-
         <div className="row">
           <div className="col-2"></div>
           <div className="col-5"></div>
           <div className="col-5"></div>
-          {!usuarioValido && (
+          {usuarioValido ? (
             <div className="loginPage">
               <h1 className="text-center mt-4">Bienvenido</h1>
               <p className="text-center mt-4">
@@ -66,6 +56,10 @@ function LoginComponent({ setIsAuth }) {
               >
                 Iniciar Sesión
               </button>
+
+            </div>
+          ) :
+            <div>
               <ReCAPTCHA
                 ref={captcha}
                 id="medio1"
@@ -73,30 +67,8 @@ function LoginComponent({ setIsAuth }) {
                 onChange={onChange}
               />
             </div>
-          )}
-          {usuarioValido && (
-            <div>
-              <h1>Bienvenido</h1>
-            </div>
-          )}
-
+          }
         </div>
-
-        {usuarioValido ? (
-          <div className="loginPage">
-            <p>Sign In With Google to Continue</p>
-            <button
-              className="login-with-google-btn"
-              onClick={signInWithGoogle}
-            >
-              Sign in with Google
-            </button>
-          </div>
-        ) : (
-          <div>
-            <h1></h1>
-          </div>
-        )}
         {!usuarioValido && auth.currentUser !== null && (
           <div>
             <h2>Bienvenido {auth.currentUser.displayName}</h2>
