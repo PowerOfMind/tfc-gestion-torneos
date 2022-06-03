@@ -6,6 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import PropTypes from "prop-types";
 import "./login.css";
 function LoginComponent({ setIsAuth }) {
+
   const [captchaValido, cambiarCaptchaValido] = useState(null);
   const [usuarioValido, setUsuarioValido] = useState(null);
   const captcha = useRef(null);

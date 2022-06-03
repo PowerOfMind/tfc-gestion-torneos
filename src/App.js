@@ -6,10 +6,9 @@ import ContactComponent from "./pages/ContactComponent";
 import LoginComponent from "./pages/LoginComponent";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
-import ComponenteAddMatch from "./ComponenteAddMatch";
-import "./App.css";
-import ComponenteListPartidos from "./ComponenteListPartidos";
-import Politica from "./pages/Politica";
+import ComponenteAddMatch from './ComponenteAddMatch';
+import './App.css';
+import ComponenteListPartidos from './ComponenteListPartidos';
 
 const App = (props) => {
   const [isAuth, setIsAuth] = useState(false);

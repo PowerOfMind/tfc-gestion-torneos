@@ -35,7 +35,7 @@ const MainApp = (props) => {
           <img
             src="https://www.antevenio.com/wp-content/uploads/2015/12/redes-facebook-2.jpg"
 
-            className="w-100"
+            className="w-100" alt="anuncio-fb"
 
           />
           <img
