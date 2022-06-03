@@ -3,8 +3,8 @@ import { auth, provider } from "../firebase-config";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
-import "./login.css"
-
+import PropTypes from "prop-types";
+import "./login.css";
 function LoginComponent({ setIsAuth }) {
 
   const [captchaValido, cambiarCaptchaValido] = useState(null);
@@ -76,9 +76,9 @@ function LoginComponent({ setIsAuth }) {
       )}
 
     </div>
-
-  )
+  );
 }
 
+LoginComponent.propTypes = {};
 
-export default LoginComponent
+export default LoginComponent;
