@@ -24,6 +24,7 @@ const ComponenteAddMatch = ({ isAuth }) => {
   const handleInput = (input) => {
     //input.preventDefault();
     crearPartido();
+    window.location.reload();
   }
 
   const crearPartido = async () => {
@@ -42,11 +43,14 @@ const ComponenteAddMatch = ({ isAuth }) => {
     );
     navigate("/");
   };
-
+  
   useEffect(() => {
-    if (auth.currentUser === null) {
-      navigate("/login");
-    }
+    const timer = setTimeout(() => {
+      if (auth.currentUser === null) {
+        navigate("/login");
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
