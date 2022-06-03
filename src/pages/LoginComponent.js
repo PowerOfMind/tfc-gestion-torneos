@@ -25,10 +25,12 @@ function LoginComponent({ setIsAuth }) {
 
   const onChange = () => {
     if (captcha.current.getValue()) {
+
       console.log('El usuario no es un robot');
       setUsuarioValido(true)
     }
   }
+
 
   const signUserOut = () => {
     signOut(auth).then(() => {
@@ -41,42 +43,69 @@ function LoginComponent({ setIsAuth }) {
   return (
     <div className="container">
       <div>
-
         <ReCAPTCHA
           ref={captcha}
           sitekey="6LdUuzggAAAAAHUz51SVgjkr3Hj2HNo-HRDmxkCW"
           onChange={onChange}
         />
+
+        <div className="row">
+          <div className="col-2"></div>
+          <div className="col-5"></div>
+          <div className="col-5"></div>
+          {!usuarioValido && (
+            <div className="loginPage">
+              <h1 className="text-center mt-4">Bienvenido</h1>
+              <p className="text-center mt-4">
+                Inicia sesión en google para continuar
+              </p>
+              <button
+                className=" btn login-with-google-btn btn-primary text-center mb-3"
+                id="medio"
+                onClick={signInWithGoogle}
+              >
+                Iniciar Sesión
+              </button>
+              <ReCAPTCHA
+                ref={captcha}
+                id="medio1"
+                sitekey="6LdUuzggAAAAAHUz51SVgjkr3Hj2HNo-HRDmxkCW"
+                onChange={onChange}
+              />
+            </div>
+          )}
+          {usuarioValido && (
+            <div>
+              <h1>Bienvenido</h1>
+            </div>
+          )}
+
+        </div>
+
+        {usuarioValido ? (
+          <div className="loginPage">
+            <p>Sign In With Google to Continue</p>
+            <button
+              className="login-with-google-btn"
+              onClick={signInWithGoogle}
+            >
+              Sign in with Google
+            </button>
+          </div>
+        ) : (
+          <div>
+            <h1></h1>
+          </div>
+        )}
+        {!usuarioValido && auth.currentUser !== null && (
+          <div>
+            <h2>Bienvenido {auth.currentUser.displayName}</h2>
+            <button className="btn btn-primary mb-3" onClick={signUserOut}>
+              Sign Out!
+            </button>
+          </div>
+        )}
       </div>
-
-
-      {usuarioValido ?
-        <div className="loginPage">
-          <p>Sign In With Google to Continue</p>
-          <button className="login-with-google-btn" onClick={signInWithGoogle}>
-            Sign in con Google
-          </button>
-          {/* <button className="login-btn" onClick={signinAnonimously}>
-            Sign in anonimo
-          </button> */}
-
-        </div>
-        :
-        <div>
-          <h1> </h1>
-
-        </div>
-
-      }
-      {!usuarioValido && auth.currentUser !== null && (
-        <div>
-          <h2>Bienvenido {auth.currentUser.displayName}</h2>
-          <button className="btn btn-primary mb-3" onClick={signUserOut}>
-            Sign Out!
-          </button>
-        </div>
-      )}
-
     </div>
   );
 }
