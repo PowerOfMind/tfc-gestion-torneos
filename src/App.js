@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+
 import MainApp from "./MainApp";
 import TournamentComponent from "./pages/TournamentComponent";
 import ContactComponent from "./pages/ContactComponent";
@@ -11,36 +12,37 @@ import ComponenteListPartidos from './ComponenteListPartidos';
 import './App.css';
 
 const App = props => {
+
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
 
   return (
     <Router>
-      <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-md-center sticky-top justify-content-start">
+      <nav className="navbar navbar-dark navbar-expand-md bg-dark justify-content-md-center sticky-top justify-content-start">
         <button
-          class="navbar-toggler ml-1"
+          className="navbar-toggler ml-1"
           type="button"
           data-toggle="collapse"
           data-target="#collapsingNavbar2"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <a href="/#" className="nav-link disabled">Sportments</a>
         <div
-          class="navbar-collapse collapse justify-content-between align-items-center w-100"
+          className="navbar-collapse collapse justify-content-between align-items-center w-100"
           id="collapsingNavbar2"
         >
-          <ul class="navbar-nav mx-auto text-md-center text-left">
-            <li class="nav-item">
+          <ul className="navbar-nav mx-auto text-md-center text-left">
+            <li className="nav-item">
               <Link to="/" className="nav-link">Home</Link>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <Link to="/torneos" className="nav-link">Torneos</Link>
             </li>
-            <li class="nav-item my-auto">
+            <li className="nav-item my-auto">
               <Link to="/contacto" className="nav-link">Contacto</Link>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <Link to="/login" className="nav-link">Login</Link>
             </li>
           </ul>

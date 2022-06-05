@@ -24,7 +24,23 @@ const ComponenteListPartidos = ({ isAuth }) => {
     await deleteDoc(matchDoc);
     /*window.location.reload() */
   };
-  
+
+  /* useEffect(() => {
+    const timer = setTimeout(() => {
+      if ((auth.currentUser) === null) {
+        navigate("/login");
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []); */
+  useEffect(() => {
+
+    if ((auth.currentUser) === null) {
+      navigate("/login");
+    }
+
+  }, []);
+
   useEffect(() => {
     const getpartidos = async () => {
       const data = await getDocs(partidosCollectionRef);
@@ -63,13 +79,13 @@ const ComponenteListPartidos = ({ isAuth }) => {
                         className="noselect delete"
                         onClick={() => {
 
-                              deletePartido(item.id);
-                            }}
+                          deletePartido(item.id);
+                        }}
                       >
                         <span className="text">Borrar</span>
                         <span className="icon">
                           <svg
-                            
+
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
