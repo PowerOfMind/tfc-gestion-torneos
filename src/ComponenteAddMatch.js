@@ -3,13 +3,15 @@ import { db, auth } from "./firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import "react-datepicker/dist/react-datepicker.css";
 import "./addPartidos.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate  } from "react-router-dom";
 
 
 const ComponenteAddMatch = ({ isAuth }) => {
 
   let navigate = useNavigate();
 
+
+  
   const [nuevoDia, setNuevoDia] = useState("DD/MM/YYYY");
   const [nuevaHora, setNuevaHora] = useState("00:00");
   const [nuevoPresupuesto, setNuevoPresupuesto] = useState(0);
@@ -22,9 +24,9 @@ const ComponenteAddMatch = ({ isAuth }) => {
   const [tipo, setTipo] = useState(["Seleccione tipo", "Voley pista", "Voley playa", "Fut-Voley"]);
 
   const handleInput = (input) => {
-    //input.preventDefault();
+    input.preventDefault();
     crearPartido();
-    window.location.reload();
+    //window.location.reload();
   }
 
   const crearPartido = async () => {
@@ -44,18 +46,13 @@ const ComponenteAddMatch = ({ isAuth }) => {
     navigate("/");
   };
   
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (auth.currentUser === null) {
-        navigate("/login");
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  
 
   return (
     <div >
       <h2>Agregar partido</h2>
+      {/* {isAuth == null ?
+       <Navigate to="/login" /> : <span> bienvenido</span>} */}
       {isAuth !== null ?
         (<form>
           <div className="row">
@@ -109,6 +106,8 @@ const ComponenteAddMatch = ({ isAuth }) => {
                 type="number"
                 className="form-control noborde"
                 name="integrantes"
+                max = "10"
+                min = "1"
                 onChange={(e) => {
                   setNuevoIntegrante(e.target.value);
                 }}
@@ -131,7 +130,9 @@ const ComponenteAddMatch = ({ isAuth }) => {
             Agregar partido
           </button>
         </form>) :
+        
         <div class="alert">
+          
           Debes iniciar sesion para agregar un partido
         </div>
       }
