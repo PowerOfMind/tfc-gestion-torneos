@@ -16,7 +16,7 @@ const ComponenteListPartidos = ({ isAuth }) => {
   const [listaPartidos, setListaPartidos] = useState([]);
   const [randstate, setRandstate] = useState(0);
   const partidosCollectionRef = collection(db, "partidos");
-  console.log('auth: ' , auth);
+  console.log('auth: ', auth);
 
   const deletePartido = async (id) => {
     setRandstate(randstate + 1);
@@ -24,14 +24,12 @@ const ComponenteListPartidos = ({ isAuth }) => {
     await deleteDoc(matchDoc);
     /*window.location.reload() */
   };
+  
   useEffect(() => {
     const getpartidos = async () => {
       const data = await getDocs(partidosCollectionRef);
       setListaPartidos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      let cont = 0;
-      console.log('contador', cont + 1);
     };
-
     getpartidos();
   }, [randstate]);
 
@@ -60,28 +58,29 @@ const ComponenteListPartidos = ({ isAuth }) => {
                     Fecha: {item.dia} - Hora: {item.hora}
                   </div>
                   {!isAuth && item.organizador.id === auth.currentUser.uid && (
-                  <div className="card-footer text-muted">
-                    <button
-                      className="noselect delete"
-                    >
-                      <span className="text">Borrar</span>
-                      <span className="icon">
-                        <svg
-                          onClick={() => {
+                    <div className="card-footer text-muted">
+                      <button
+                        className="noselect delete"
+                        onClick={() => {
 
-                            deletePartido(item.id);
-                          }}
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
-                        </svg>
-                      </span>
-                    </button>
-                    
-                  </div>
+                              deletePartido(item.id);
+                            }}
+                      >
+                        <span className="text">Borrar</span>
+                        <span className="icon">
+                          <svg
+                            
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                          </svg>
+                        </span>
+                      </button>
+
+                    </div>
                   )}
                 </div>
               </div>
