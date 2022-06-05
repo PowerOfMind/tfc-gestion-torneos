@@ -26,7 +26,6 @@ function LoginComponent({ setIsAuth }) {
     }
   }
 
-
   const signUserOut = () => {
     signOut(auth).then(() => {
       localStorage.removeItem("isAuth");
