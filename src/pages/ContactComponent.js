@@ -1,9 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./contact.css";
+import emailjs from "@emailjs/browser";
 function ContactComponent(props) {
+
+  const sendEmail = (event) =>{
+    event.preventDefault();
+    emailjs.sendForm('service_ybhr68k','template_eade4mj', event.target, 'kT1CvVamaHPSc8dzS' )
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
+  }
+
+
+
   return (
-    <div classNameName="container justify-content-center text-center">
+    <div className="container justify-content-center text-center">
       <div className="form-body">
         <div className="row">
           <div className="form-holder">
@@ -11,14 +22,14 @@ function ContactComponent(props) {
               <div className="form-items">
                 <h3>Contáctanos</h3>
                 <p>Rellena los datos del mensaje.</p>
-                <form className="requires-validation" novalidate>
+                <form className="requires-validation" onSubmit={sendEmail} noValidate>
                   
 
                   <div className="col-md-12">
                     <input
                       className="form-control"
                       type="email"
-                      name="email"
+                      name="correo"
                       placeholder="Dirección de correo"
                       required
                     />
@@ -31,8 +42,8 @@ function ContactComponent(props) {
                     <input
                       className="form-control"
                       type="text"
-                      name="asunto"
-                      placeholder="Asunto"
+                      name="name"
+                      placeholder="Nombre"
                       required
                     />
                   </div>
