@@ -9,58 +9,41 @@ function ContactComponent(props) {
           <div className="form-holder">
             <div className="form-content">
               <div className="form-items">
-                <h3>Register Today</h3>
-                <p>Fill in the data below.</p>
+                <h3>Contáctanos</h3>
+                <p>Rellena los datos del mensaje.</p>
                 <form className="requires-validation" novalidate>
-                  <div className="col-md-12">
-                    <input
-                      className="form-control"
-                      type="text"
-                      name="name"
-                      placeholder="Full Name"
-                      required
-                    />
-                    <div className="valid-feedback">Username field is valid!</div>
-                    <div className="invalid-feedback">
-                      Username field cannot be blank!
-                    </div>
-                  </div>
+                  
 
                   <div className="col-md-12">
                     <input
                       className="form-control"
                       type="email"
                       name="email"
-                      placeholder="E-mail Address"
+                      placeholder="Dirección de correo"
                       required
                     />
-                    <div className="valid-feedback">Email field is valid!</div>
+                    <div className="valid-feedback">El email es valido</div>
                     <div className="invalid-feedback">
-                      Email field cannot be blank!
+                      El email no puede estar vacio
                     </div>
                   </div>
-
-                  <div className="col-md-12">
-                    <select className="form-select mt-3" required>
-                      <option selected disabled value="">
-                        Position
-                      </option>
-                      <option value="jweb">Junior Web Developer</option>
-                      <option value="sweb">Senior Web Developer</option>
-                      <option value="pmanager">Project Manager</option>
-                    </select>
-                    <div className="valid-feedback">You selected a position!</div>
-                    <div className="invalid-feedback">
-                      Please select a position!
-                    </div>
-                  </div>
-
                   <div className="col-md-12">
                     <input
                       className="form-control"
-                      type="password"
-                      name="password"
-                      placeholder="Password"
+                      type="text"
+                      name="asunto"
+                      placeholder="Asunto"
+                      required
+                    />
+                  </div>
+                  
+
+                  <div className="col-md-12 mt-2">
+                    <textarea
+                      className="form-control"
+                      type="text"
+                      name="cuerpo"
+                      placeholder="Cuerpo del correo"
                       required
                     />
                   </div>
@@ -74,10 +57,10 @@ function ContactComponent(props) {
                       required
                     />
                     <label className="form-check-label">
-                      I confirm that all data are correct
+                      Confirmo que los datos son correctos
                     </label>
                     <div className="invalid-feedback">
-                      Please confirm that the entered data are all correct!
+                      Confirma que todos los datos son correctos
                     </div>
                   </div>
 
