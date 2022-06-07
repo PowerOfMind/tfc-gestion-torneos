@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./contact.css";
 import emailjs from "@emailjs/browser";
+
 function ContactComponent(props) {
 
   const sendEmail = (event) =>{

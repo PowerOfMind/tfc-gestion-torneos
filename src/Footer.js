@@ -3,9 +3,9 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="footer text-center mt-4">
       <div className="container">
-        <div className="row container ">
+        <div className="row">
           <div className="col-4 mt-4">
             <a
               href="https://www.privacypolicies.com/live/ee67eaf0-e568-40fc-91fd-602c4d0b43af"

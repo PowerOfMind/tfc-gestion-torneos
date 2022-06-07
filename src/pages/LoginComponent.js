@@ -68,7 +68,7 @@ function LoginComponent({ setIsAuth }) {
           }
         </div>
         {!usuarioValido && auth.currentUser !== null && (
-          <div>
+          <div className="text-center mt-4">
             <h2>Bienvenido {auth.currentUser.displayName}</h2>
             <button className="btn btn-primary mb-3" onClick={signUserOut}>
               Sign Out!

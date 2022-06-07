@@ -51,9 +51,7 @@ const MainApp = (props) => {
           </div>
         </div>
       </div>
-      <div className="row mt-4">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };
