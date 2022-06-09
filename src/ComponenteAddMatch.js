@@ -18,6 +18,7 @@ const ComponenteAddMatch = ({ isAuth }) => {
   const [nuevoTipo, setNuevoTipo] = useState("");
   const [nuevoIntegrante, setNuevoIntegrante] = useState(0);
   const [nuevoPrivado, setNuevoPrivado] = useState("");
+
   const partidosCollectionRef = collection(db, "partidos");
 
 
@@ -26,7 +27,7 @@ const ComponenteAddMatch = ({ isAuth }) => {
   const handleInput = (input) => {
     //input.preventDefault();
     crearPartido();
-    window.location.reload();
+    //window.location.reload();
   }
 
   const crearPartido = async () => {
@@ -59,6 +60,7 @@ const ComponenteAddMatch = ({ isAuth }) => {
               <input
                 id="dia"
                 type="date"
+                min="2022-06-10"
                 className="form-control noborde"
                 onChange={(e) => { setNuevoDia(e.target.value) }}
               ></input>
@@ -79,6 +81,8 @@ const ComponenteAddMatch = ({ isAuth }) => {
                 id="presupuesto"
                 placeholder="0"
                 type="number"
+                min="0"
+                max="100"
                 className="form-control noborde"
                 name="presupuesto"
                 onChange={(e => { setNuevoPresupuesto(e.target.value) })}

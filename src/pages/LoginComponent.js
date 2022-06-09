@@ -41,31 +41,31 @@ function LoginComponent({ setIsAuth }) {
           <div className="col-2"></div>
           <div className="col-5"></div>
           <div className="col-5"></div>
-          {usuarioValido ? (
+          {auth.currentUser === null && (
             <div className="loginPage">
               <h1 className="text-center mt-4">Bienvenido</h1>
               <p className="text-center mt-4">
                 Inicia sesión en google para continuar
               </p>
-              <button
-                className=" btn login-with-google-btn btn-primary text-center mb-3"
-                id="medio"
-                onClick={signInWithGoogle}
-              >
-                Iniciar Sesión
-              </button>
-
+              <div>
+                <ReCAPTCHA
+                  ref={captcha}
+                  id="medio1"
+                  sitekey="6LdUuzggAAAAAHUz51SVgjkr3Hj2HNo-HRDmxkCW"
+                  onChange={onChange}
+                />
+              </div>
+              {usuarioValido && (
+                <button
+                  className=" btn login-with-google-btn btn-primary text-center mb-3"
+                  id="medio"
+                  onClick={signInWithGoogle}
+                >
+                  Iniciar Sesión
+                </button>
+              )}
             </div>
-          ) :
-            <div>
-              <ReCAPTCHA
-                ref={captcha}
-                id="medio1"
-                sitekey="6LdUuzggAAAAAHUz51SVgjkr3Hj2HNo-HRDmxkCW"
-                onChange={onChange}
-              />
-            </div>
-          }
+          )}
         </div>
         {!usuarioValido && auth.currentUser !== null && (
           <div className="text-center mt-4">
