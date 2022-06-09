@@ -24,9 +24,9 @@ const ComponenteAddMatch = ({ isAuth }) => {
   const [tipo, setTipo] = useState(["Seleccione tipo", "Voley pista", "Voley playa", "Fut-Voley"]);
 
   const handleInput = (input) => {
-    input.preventDefault();
+    //input.preventDefault();
     crearPartido();
-    //window.location.reload();
+    window.location.reload();
   }
 
   const crearPartido = async () => {
@@ -51,8 +51,6 @@ const ComponenteAddMatch = ({ isAuth }) => {
   return (
     <div >
       <h2>Agregar partido</h2>
-      {/* {isAuth == null ?
-       <Navigate to="/login" /> : <span> bienvenido</span>} */}
       {isAuth !== null ?
         (<form>
           <div className="row">

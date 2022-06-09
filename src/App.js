@@ -18,7 +18,7 @@ const App = props => {
 
   return (
     <Router>
-      <nav className="navbar navbar-dark navbar-expand-md bg-dark justify-content-md-center sticky-top justify-content-start">
+      <nav className="navbar navbar-dark navbar-expand-md bg-dark sticky-top justify-content-start">
         <button
           className="navbar-toggler ml-1"
           type="button"
@@ -44,6 +44,12 @@ const App = props => {
             </li>
             <li className="nav-item">
               <Link to="/login" className="nav-link">Login</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/#" className="nav-link"></Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/#" className="nav-link"></Link>
             </li>
           </ul>
         </div>

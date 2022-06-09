@@ -33,9 +33,19 @@ const ComponenteListPartidos = ({ isAuth }) => {
     }, 1000);
     return () => clearTimeout(timer);
   }, []); */
-  useEffect(() => {
 
-    if ((auth.currentUser) === null) {
+  let setas = localStorage.getItem("isAuth")
+  console.log('setas: ',setas);
+
+  useEffect(() => {
+    
+    // if ((auth.currentUser) === null) {
+    //   navigate("/login");
+    // }
+
+    if (setas) {
+      navigate("/");
+    }else{
       navigate("/login");
     }
 
