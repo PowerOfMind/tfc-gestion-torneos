@@ -25,9 +25,9 @@ const ComponenteAddMatch = ({ isAuth }) => {
   const [tipo, setTipo] = useState(["Seleccione tipo", "Voley pista", "Voley playa", "Fut-Voley"]);
 
   const handleInput = (input) => {
-    //input.preventDefault();
+    input.preventDefault();
     crearPartido();
-    //window.location.reload();
+    window.location.reload();
   }
 
   const crearPartido = async () => {
@@ -44,7 +44,7 @@ const ComponenteAddMatch = ({ isAuth }) => {
       }
 
     );
-    navigate("/");
+    //navigate("/");
   };
   
   
